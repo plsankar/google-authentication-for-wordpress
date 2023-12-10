@@ -11,18 +11,16 @@ use Google;
 use Google\Client;
 
 /**
- * Class that handles the auth.
+ * Class representing the auth for the plugin.
  *
  * @since 1.0.0
- * @access private
- * @ignore
  */
 final class Auth {
-
 
 	/**
 	 * Instance of this class.
 	 *
+	 * @since 1.0.0
 	 * @var Auth|null
 	 */
 	private static ?Auth $instance = null;
@@ -30,22 +28,26 @@ final class Auth {
 	/**
 	 * Nonces of used in the auth process.
 	 *
+	 * @since 1.0.0
 	 * @var array
 	 */
 	private array $nonces = array(
-		'callback' => 'slwg-ajax-callback',
-		'login'    => 'slwg-ajax-login',
+		'callback' => 'gauthwp-ajax-callback',
+		'login'    => 'gauthwp-ajax-login',
 	);
 
 	/**
-	 * Google client.
+	 * Instance of the Google client.
 	 *
+	 * @since 1.0.0
 	 * @var Client
 	 */
 	private ?Client $google_client = null;
 
 	/**
-	 * Create an instance of the context class
+	 * Create an instance of the context class.
+	 *
+	 * @since 1.0.0
 	 */
 	public function __construct() {
 	}
@@ -53,6 +55,7 @@ final class Auth {
 	/**
 	 * Get or create instance of the class.
 	 *
+	 * @since 1.0.0
 	 * @return Auth
 	 */
 	public static function get_instance() {
@@ -65,6 +68,7 @@ final class Auth {
 	/**
 	 * Initates the class.
 	 *
+	 * @since 1.0.0
 	 * @return void
 	 */
 	public function init() {
@@ -74,25 +78,27 @@ final class Auth {
 	/**
 	 * Register all the hooks and filters.
 	 *
+	 * @since 1.0.0
 	 * @return void
 	 */
 	public function register() {
-		add_action( 'wp_ajax_nopriv_slwg_google_callback', array( self::$instance, 'ajax_google_callback' ) );
-		add_action( 'wp_ajax_slwg_google_callback', array( self::$instance, 'ajax_google_callback' ) );
+		add_action( 'wp_ajax_nopriv_gauthwp_google_callback', array( self::$instance, 'ajax_google_callback' ) );
+		add_action( 'wp_ajax_gauthwp_google_callback', array( self::$instance, 'ajax_google_callback' ) );
 
-		add_action( 'wp_ajax_nopriv_slwg_google_login', array( self::$instance, 'ajax_google_login' ) );
-		add_action( 'wp_ajax_slwg_google_login', array( self::$instance, 'ajax_google_login' ) );
+		add_action( 'wp_ajax_nopriv_gauthwp_google_login', array( self::$instance, 'ajax_google_login' ) );
+		add_action( 'wp_ajax_gauthwp_google_login', array( self::$instance, 'ajax_google_login' ) );
 	}
 
 	/**
-	 * Generate and redirect to Google OAuth login page.
+	 * Redirect to Google OAuth login page.
 	 *
+	 * @since 1.0.0
 	 * @return void
 	 */
 	public function ajax_google_login() {
 		if ( false === Settings::get_instance()->get_option( 'google_enabled' ) ) {
 			wp_die(
-				esc_html__( 'Google login is disabled.', 'slwg' )
+				esc_html__( 'Google login is disabled.', 'gauthwp' )
 			);
 			exit;
 		}
@@ -102,7 +108,7 @@ final class Auth {
 			empty( Settings::get_instance()->get_option( 'google_client_secret' ) )
 		) {
 			wp_die(
-				esc_html__( 'Google login is not configured.', 'slwg' )
+				esc_html__( 'Google login is not configured.', 'gauthwp' )
 			);
 			exit;
 		}
@@ -112,7 +118,7 @@ final class Auth {
 			'nonce' => wp_create_nonce( $this->nonces['callback'] ),
 		);
 
-        // phpcs:ignore WordPressCS.WordPress.Sniffs.Securit.NonceVerificationSniff
+        // phpcs:ignore
 		if ( isset( $_GET['redirect_url'] ) || empty( $_GET['redirect_url'] ) ) {
             // phpcs:ignore
             $state['redirect_url'] = $_GET['redirect_url'];
@@ -134,6 +140,7 @@ final class Auth {
 	/**
 	 * Callback that handles the OAuth code.
 	 *
+	 * @since 1.0.0
 	 * @return void
 	 */
 	public function ajax_google_callback() {
@@ -141,9 +148,9 @@ final class Auth {
 		if ( ! ( isset( $_GET['code'] ) && ! empty( $_GET['code'] ) ) ) {
 			wp_die(
 				esc_html(
-					slwg_is_debug()
+					gauthwp_is_debug()
 					? 'Outh code is missing from the request'
-					: __( 'You can not access this page directly.', 'slwg' )
+					: __( 'You can not access this page directly.', 'gauthwp' )
 				)
 			);
 			exit;
@@ -152,9 +159,9 @@ final class Auth {
 		if ( ! ( isset( $_GET['state'] ) && ! empty( $_GET['state'] ) ) ) {
 			wp_die(
 				esc_html(
-					slwg_is_debug()
+					gauthwp_is_debug()
 					? 'Outh state is missing from the request'
-					: __( 'You can not access this page directly.', 'slwg' )
+					: __( 'You can not access this page directly.', 'gauthwp' )
 				)
 			);
 			exit;
@@ -166,9 +173,9 @@ final class Auth {
 		if ( ( ! isset( $state['nonce'] ) || ( ! wp_verify_nonce( $state['nonce'], $this->nonces['callback'] ) ) ) ) {
 			wp_die(
 				esc_html(
-					slwg_is_debug()
+					gauthwp_is_debug()
 					? 'Nonce verfification failed.'
-					: __( 'You can not access this page directly.', 'slwg' )
+					: __( 'You can not access this page directly.', 'gauthwp' )
 				)
 			);
 			exit;
@@ -239,6 +246,7 @@ final class Auth {
 	/**
 	 * Creates an instace of the google client.
 	 *
+	 * @since 1.0.0
 	 * @return Google\Client
 	 */
 	public function get_google_client() {
@@ -250,7 +258,7 @@ final class Auth {
 		$google_client->setClientSecret( Settings::get_instance()->get_option( 'google_client_secret' ) );
 		$google_client->addScope( 'https://www.googleapis.com/auth/userinfo.email' );
 		$google_client->addScope( 'https://www.googleapis.com/auth/userinfo.profile' );
-		$google_client->setRedirectUri( admin_url( 'admin-ajax.php' ) . '?action=slwg_google_callback' );
+		$google_client->setRedirectUri( admin_url( 'admin-ajax.php' ) . '?action=gauthwp_google_callback' );
 		return $google_client;
 	}
 }

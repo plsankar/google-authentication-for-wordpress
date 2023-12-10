@@ -7,7 +7,7 @@
     "scripts": {
         "docker:build": "docker build --progress=plain --no-cache .",
         "lint:php": "phpcs --ignore=*/vendor/* --extensions=php -d memory_limit=512M .",
-        "make-pot": "wp i18n make-pot . languages/slwg.pot",
+        "make-pot": "wp i18n make-pot . languages/gauthwp.pot",
         "dev": "vite",
         "build": "tsc && vite build --watch",
         "preview": "vite preview",

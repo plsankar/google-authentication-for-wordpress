@@ -12,9 +12,9 @@ import LoginSettingsPanel from "./LoginSettings";
 
 const queryClient = new QueryClient();
 
-ReactDOM.createRoot(document.getElementById("slwg-admin")!).render(
+ReactDOM.createRoot(document.getElementById("gauthwp-admin")!).render(
     <React.StrictMode>
-        <ThemeProvider defaultTheme="dark" storageKey="slwg-admin-ui-theme">
+        <ThemeProvider defaultTheme="dark" storageKey="gauthwp-admin-ui-theme">
             <QueryClientProvider client={queryClient}>
                 <div className="ml-[-20px] min-h-screen">
                     <div>

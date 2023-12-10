@@ -26,20 +26,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use GoogleAuthForWP\Plugin;
+use GoogleAuthForWP\Context;
 
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/functions.php';
 
-if ( ! function_exists( 'google_authentication_for_wp' ) ) {
-	/**
-	 * Get an instance of the plugin
-	 *
-	 * @return Plugin
-	 */
-	function google_authentication_for_wp() {
-		return Plugin::get_instance( __FILE__ );
-	}
-}
+/**
+ * Initiates the context for the plugin.
+ */
+Context::init( __FILE__ );
 
-google_authentication_for_wp()->init();
+google_auth_wp()->init();

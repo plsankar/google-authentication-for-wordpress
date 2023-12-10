@@ -11,45 +11,34 @@ namespace GoogleAuthForWP;
  * Class representing the main plugin.
  *
  * @since 1.0.0
- * @access private
- * @ignore
  */
 final class Plugin {
-
 
 	/**
 	 * Instance of this plugin.
 	 *
+	 * @since 1.0.0
 	 * @var Plugin|null
 	 */
 	private static ?Plugin $instance = null;
 
 	/**
-	 * Context of the plugin
+	 * Create an instance of the plugin.
 	 *
-	 * @var Context
+	 * @since 1.0.0
 	 */
-	public Context $context;
-
-	/**
-	 * Get or create nstance of the plugin.
-	 *
-	 * @param Context $context Context of the plugin.
-	 */
-	public function __construct( Context $context = null ) {
-		$this->context = $context;
+	public function __construct() {
 	}
 
 	/**
 	 * Get or create instance of the plugin.
 	 *
-	 * @param string $plugin_file Main file of the plugin.
+	 * @since 1.0.0
 	 * @return Plugin
 	 */
-	public static function get_instance( string $plugin_file ) {
+	public static function get_instance() {
 		if ( null === self::$instance ) {
-			$context        = new Context( $plugin_file );
-			self::$instance = new Plugin( $context );
+			self::$instance = new Plugin();
 		}
 		return self::$instance;
 	}
@@ -57,20 +46,23 @@ final class Plugin {
 	/**
 	 * Initates the plugin.
 	 *
+	 * @since 1.0.0
 	 * @return void
 	 */
 	public function init() {
 		$this->register();
-		Settings::get_instance( $this->context )->init();
+		Settings::get_instance()->init();
 		Auth::get_instance()->init();
 	}
 
 	/**
 	 * Register all the hooks and filters.
 	 *
+	 * @since 1.0.0
 	 * @return void
 	 */
 	public function register() {
+		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 		if ( is_admin() ) {
 			add_action( 'admin_menu', array( $this, 'register_admin_menu' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts_and_styles' ), 10, 1 );
@@ -78,49 +70,53 @@ final class Plugin {
 	}
 
 	/**
-	 * Register admin menu items an `register_admin_menu` hook.
+	 * Register admin menu items on `register_admin_menu` hook.
 	 *
+	 * @since 1.0.0
 	 * @return void
 	 */
 	public function register_admin_menu() {
 		add_menu_page(
-			'Secure Login With Google',
-			'Secure Login With Google',
+			__( 'Google Authetication', 'gauthwp' ),
+			__( 'Google Authetication', 'gauthwp' ),
 			'manage_options',
-			'slwg',
+			'gauthwp',
 			array( $this, 'render_admin' )
 		);
 	}
 
 	/**
-	 * Render admin html content on `menu` callback.
+	 * Render admin page content on `menu` callback.
 	 *
+	 * @since 1.0.0
 	 * @return void
 	 */
 	public function render_admin() {
-		echo '<div id="slwg-admin"></div>';
+		echo '<div id="gauthwp-admin"></div>';
 	}
 
 	/**
 	 * Enqueques scripts and styles needed for the admin page.
 	 *
+	 * @since 1.0.0
 	 * @param string $hook The name of the admin page.
 	 * @return void
 	 */
 	public function enqueue_admin_scripts_and_styles( $hook ) {
-		if ( 'toplevel_page_slwg' !== $hook ) {
+		if ( 'toplevel_page_gauthwp' !== $hook ) {
 			return;
 		}
-		wp_enqueue_script( 'slwg-admin' );
-		wp_enqueue_style( 'slwg-admin' );
+		wp_enqueue_script( 'gauthwp-admin' );
+		wp_enqueue_style( 'gauthwp-admin' );
 	}
 
 	/**
 	 * Loads plugin textdomain on `init` hook.
 	 *
+	 * @since 1.0.0
 	 * @return void
 	 */
 	public function load_textdomain() {
-		load_plugin_textdomain( 'slwg', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'gauthwp', false, Context::get_instance()->plugin_dir( '/languages' ) );
 	}
 }

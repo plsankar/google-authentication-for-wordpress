@@ -10,7 +10,7 @@ import { ReactElement } from "react";
 
 declare global {
     interface Window {
-        slwg_admin: {
+        gauthwp_admin: {
             ajaxurl: string;
             adminurl: string;
             pluginurl: string;
@@ -19,7 +19,7 @@ declare global {
             rest_url: string;
             rest_nonce: string;
         };
-        slwg_login_google: {
+        gauthwp_login_google: {
             args: {
                 pluginurl: string;
                 show_on_login: boolean;

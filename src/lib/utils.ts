@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const getAdminAjaxUrl = (action: string) => {
-    const url = new URL(window.slwg_admin.ajaxUrl);
+    const url = new URL(window.gauthwp_admin.ajaxUrl);
     url.searchParams.append("action", action);
     return url.href;
 };

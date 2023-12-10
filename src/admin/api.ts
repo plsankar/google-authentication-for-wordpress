@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: `${window.slwg_admin.rest_url}slwg/v1/`,
+    baseURL: `${window.gauthwp_admin.rest_url}gauthwp/v1/`,
     headers: {
-        "X-WP-Nonce": window.slwg_admin.rest_nonce,
+        "X-WP-Nonce": window.gauthwp_admin.rest_nonce,
         "Content-Type": "application/json; charset=UTF-8",
         Accept: "application/json; charset=UTF-8",
     },
