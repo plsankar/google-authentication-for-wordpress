@@ -1,0 +1,33 @@
+# /wordpress-docker/docker-compose.yml
+---
+version: "3.3"
+services:
+    db:
+        container_name: "wpgooglelogin-db"
+        image: "mysql:5.7"
+        ports:
+            - 18766:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: wpgooglelogin
+            MYSQL_DATABASE: wpgooglelogin
+            MYSQL_USER: wpgooglelogin
+            MYSQL_PASSWORD: wpgooglelogin
+
+    wordpress:
+        container_name: "wpgooglelogin-wp"
+        depends_on:
+            - db
+        build: ./
+        image: wpgooglelogin-wp-image
+        ports:
+            - "80:80"
+        environment:
+            WORDPRESS_DB_HOST: "db:3306"
+            WORDPRESS_DB_USER: wpgooglelogin
+            WORDPRESS_DB_PASSWORD: wpgooglelogin
+            WORDPRESS_DB_NAME: wpgooglelogin
+            WORDPRESS_DEBUG: 1
+            WORDPRESS_CONFIG_EXTRA: |
+                define('WP_ENVIRONMENT_TYPE', 'development');
+        volumes:
+            - "./:/var/www/html/wp-content/plugins/google-authentication-for-wp"

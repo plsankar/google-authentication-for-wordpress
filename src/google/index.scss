@@ -1,0 +1,21 @@
+.slwg-google-button {
+    width: 100%;
+    max-width: 200px;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    span {
+        visibility: hidden;
+        opacity: 0;
+        display: none;
+    }
+    img {
+        width: 100%;
+        height: auto;
+    }
+}

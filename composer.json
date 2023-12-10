@@ -1,0 +1,32 @@
+{
+    "name": "plsankar/google-authentication-for-wp",
+    "description": "A Simple plugin to unpublish post after expiration.",
+    "type": "wordpress-plugin",
+    "autoload": {
+        "psr-4": {
+            "GoogleAuthForWP\\": "inc/"
+        }
+    },
+    "authors": [
+        {
+            "name": "plsankar",
+            "email": "me@lakshmisankar.com"
+        }
+    ],
+    "scripts": {
+        "pre-autoload-dump": "Google\\Task\\Composer::cleanup"
+    },
+    "extra": {
+        "google/apiclient-services": [
+            "OAuth2"
+        ]
+    },
+    "require": {
+        "google/apiclient": "2.12.4"
+    },
+    "config": {
+        "platform": {
+            "php": "7.1.0"
+        }
+    }
+}
