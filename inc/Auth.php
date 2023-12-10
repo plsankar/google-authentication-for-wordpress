@@ -82,11 +82,11 @@ final class Auth {
 	 * @return void
 	 */
 	public function register() {
-		add_action( 'wp_ajax_nopriv_gauthwp_google_callback', array( self::$instance, 'ajax_google_callback' ) );
-		add_action( 'wp_ajax_gauthwp_google_callback', array( self::$instance, 'ajax_google_callback' ) );
+		add_action( 'wp_ajax_nopriv_gauthwp_callback', array( self::$instance, 'ajax_google_callback' ) );
+		add_action( 'wp_ajax_gauthwp_callback', array( self::$instance, 'ajax_google_callback' ) );
 
-		add_action( 'wp_ajax_nopriv_gauthwp_google_login', array( self::$instance, 'ajax_google_login' ) );
-		add_action( 'wp_ajax_gauthwp_google_login', array( self::$instance, 'ajax_google_login' ) );
+		add_action( 'wp_ajax_nopriv_gauthwp_login', array( self::$instance, 'ajax_google_login' ) );
+		add_action( 'wp_ajax_gauthwp_login', array( self::$instance, 'ajax_google_login' ) );
 	}
 
 	/**
@@ -258,7 +258,7 @@ final class Auth {
 		$google_client->setClientSecret( Settings::get_instance()->get_option( 'google_client_secret' ) );
 		$google_client->addScope( 'https://www.googleapis.com/auth/userinfo.email' );
 		$google_client->addScope( 'https://www.googleapis.com/auth/userinfo.profile' );
-		$google_client->setRedirectUri( admin_url( 'admin-ajax.php' ) . '?action=gauthwp_google_callback' );
+		$google_client->setRedirectUri( admin_url( 'admin-ajax.php' ) . '?action=gauthwp_callback' );
 		return $google_client;
 	}
 }

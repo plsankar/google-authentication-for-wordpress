@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const FormSchema = z.object({
-    gauthwp_google_show_on_login: z.boolean().default(false),
+    gauthwp_show_on_login: z.boolean().default(false),
 });
 
 type LoginSettingsData = z.infer<typeof FormSchema>;
@@ -45,7 +45,7 @@ const LoginSettings: FC<LoginSettingsProps & PanelChild<LoginSettingsData>> = ({
                 <CardContent className="p-0 divide-y border-y">
                     <FormField
                         control={form.control}
-                        name="gauthwp_google_show_on_login"
+                        name="gauthwp_show_on_login"
                         render={(props) => (
                             <SwitchField
                                 {...props}

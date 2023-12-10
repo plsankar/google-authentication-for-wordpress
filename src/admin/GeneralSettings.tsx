@@ -27,33 +27,33 @@ import { useForm } from "react-hook-form";
 
 const FormSchema = z
     .object({
-        gauthwp_google_enabled: z.boolean().default(false),
-        gauthwp_google_client_id: z.string().optional(),
-        gauthwp_google_client_secret: z.string().optional(),
+        gauthwp_enabled: z.boolean().default(false),
+        gauthwp_client_id: z.string().optional(),
+        gauthwp_client_secret: z.string().optional(),
     })
     .superRefine((values, ctx) => {
-        if (values.gauthwp_google_enabled == true) {
+        if (values.gauthwp_enabled == true) {
             if (
-                values.gauthwp_google_client_id == undefined ||
-                values.gauthwp_google_client_id == ""
+                values.gauthwp_client_id == undefined ||
+                values.gauthwp_client_id == ""
             ) {
                 ctx.addIssue({
                     message: "Client ID can't be empty",
                     code: z.ZodIssueCode.custom,
-                    path: ["gauthwp_google_client_id"],
+                    path: ["gauthwp_client_id"],
                 });
             }
         }
 
-        if (values.gauthwp_google_enabled == true) {
+        if (values.gauthwp_enabled == true) {
             if (
-                values.gauthwp_google_client_secret == undefined ||
-                values.gauthwp_google_client_secret == ""
+                values.gauthwp_client_secret == undefined ||
+                values.gauthwp_client_secret == ""
             ) {
                 ctx.addIssue({
                     code: z.ZodIssueCode.custom,
                     message: "Client Secret can't be empty",
-                    path: ["gauthwp_google_client_secret"],
+                    path: ["gauthwp_client_secret"],
                 });
             }
         }
@@ -87,7 +87,7 @@ const GeneralSettings: FC<
                 <CardContent className="p-0 divide-y border-y">
                     <FormField
                         control={form.control}
-                        name="gauthwp_google_enabled"
+                        name="gauthwp_enabled"
                         render={(props) => (
                             <SwitchField
                                 {...props}
@@ -96,7 +96,7 @@ const GeneralSettings: FC<
                             />
                         )}
                     />
-                    <FieldAnimate show={form.getValues("gauthwp_google_enabled")}>
+                    <FieldAnimate show={form.getValues("gauthwp_enabled")}>
                         <div className="p-5">
                             <FormItem>
                                 <FormLabel>Redirect Url</FormLabel>
@@ -114,7 +114,7 @@ const GeneralSettings: FC<
                                 <FormControl>
                                     <CopyToClipboard
                                         text={getAdminAjaxUrl(
-                                            "gauthwp_google_callback",
+                                            "gauthwp_callback",
                                         )}
                                         onCopy={() => {
                                             toast({
@@ -141,7 +141,7 @@ const GeneralSettings: FC<
                                             className="w-full justify-start"
                                         >
                                             {getAdminAjaxUrl(
-                                                "gauthwp_google_callback",
+                                                "gauthwp_callback",
                                             )}
                                         </Button>
                                     </CopyToClipboard>
@@ -150,10 +150,10 @@ const GeneralSettings: FC<
                             </FormItem>
                         </div>
                     </FieldAnimate>
-                    <FieldAnimate show={form.getValues("gauthwp_google_enabled")}>
+                    <FieldAnimate show={form.getValues("gauthwp_enabled")}>
                         <FormField
                             control={form.control}
-                            name="gauthwp_google_client_id"
+                            name="gauthwp_client_id"
                             render={(props) => (
                                 <TextareaField
                                     placeholder={""}
@@ -164,10 +164,10 @@ const GeneralSettings: FC<
                             )}
                         />
                     </FieldAnimate>
-                    <FieldAnimate show={form.getValues("gauthwp_google_enabled")}>
+                    <FieldAnimate show={form.getValues("gauthwp_enabled")}>
                         <FormField
                             control={form.control}
-                            name="gauthwp_google_client_secret"
+                            name="gauthwp_client_secret"
                             render={(props) => (
                                 <TextareaField
                                     placeholder={""}

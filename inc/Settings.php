@@ -81,22 +81,22 @@ final class Settings {
 				'callback'            => array( $this, 'save' ),
 				'permission_callback' => 'gauthwp_rest_permission_callback',
 				'args'                => array(
-					'gauthwp_google_enabled'       => array(
+					'gauthwp_enabled'       => array(
 						'type'              => 'boolean',
 						'validate_callback' => 'gauthwp_rest_validate_callback_boolean',
 						'sanitize_callback' => 'rest_sanitize_boolean',
 					),
-					'gauthwp_google_client_id'     => array(
+					'gauthwp_client_id'     => array(
 						'type'              => 'string',
 						'validate_callback' => 'gauthwp_rest_validate_callback_string',
 						'sanitize_callback' => 'sanitize_textarea_field',
 					),
-					'gauthwp_google_client_secret' => array(
+					'gauthwp_client_secret' => array(
 						'type'              => 'string',
 						'validate_callback' => 'gauthwp_rest_validate_callback_string',
 						'sanitize_callback' => 'sanitize_textarea_field',
 					),
-					'gauthwp_google_show_on_login' => array(
+					'gauthwp_show_on_login' => array(
 						'type'              => 'boolean',
 						'validate_callback' => 'gauthwp_rest_validate_callback_boolean',
 						'sanitize_callback' => 'rest_sanitize_boolean',
@@ -140,10 +140,10 @@ final class Settings {
 	public function save( \WP_REST_Request $request ) {
 		$params = wp_parse_args( $request->get_params(), $this->get_options() );
 
-		update_option( 'gauthwp_google_enabled', boolval( $params['gauthwp_google_enabled'] ) );
-		update_option( 'gauthwp_google_client_id', $params['gauthwp_google_client_id'] );
-		update_option( 'gauthwp_google_client_secret', $params['gauthwp_google_client_secret'] );
-		update_option( 'gauthwp_google_show_on_login', boolval( $params['gauthwp_google_show_on_login'] ) );
+		update_option( 'gauthwp_enabled', boolval( $params['gauthwp_enabled'] ) );
+		update_option( 'gauthwp_client_id', $params['gauthwp_client_id'] );
+		update_option( 'gauthwp_client_secret', $params['gauthwp_client_secret'] );
+		update_option( 'gauthwp_show_on_login', boolval( $params['gauthwp_show_on_login'] ) );
 
 		return rest_ensure_response(
 			new WP_REST_Response(
@@ -163,10 +163,10 @@ final class Settings {
 	 */
 	public function get_options() {
 		return array(
-			'gauthwp_google_enabled'       => boolval( get_option( 'gauthwp_google_enabled', false ) ),
-			'gauthwp_google_client_id'     => get_option( 'gauthwp_google_client_id', '' ),
-			'gauthwp_google_client_secret' => get_option( 'gauthwp_google_client_secret', '' ),
-			'gauthwp_google_show_on_login' => boolval( get_option( 'gauthwp_google_show_on_login', true ) ),
+			'gauthwp_enabled'       => boolval( get_option( 'gauthwp_enabled', false ) ),
+			'gauthwp_client_id'     => get_option( 'gauthwp_client_id', '' ),
+			'gauthwp_client_secret' => get_option( 'gauthwp_client_secret', '' ),
+			'gauthwp_show_on_login' => boolval( get_option( 'gauthwp_show_on_login', true ) ),
 		);
 	}
 
