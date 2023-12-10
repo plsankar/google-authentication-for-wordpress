@@ -166,7 +166,7 @@ final class Settings {
 			'gauthwp_enabled'       => boolval( get_option( 'gauthwp_enabled', false ) ),
 			'gauthwp_client_id'     => get_option( 'gauthwp_client_id', '' ),
 			'gauthwp_client_secret' => get_option( 'gauthwp_client_secret', '' ),
-			'gauthwp_show_on_login' => boolval( get_option( 'gauthwp_show_on_login', true ) ),
+			'gauthwp_show_on_login' => boolval( get_option( 'gauthwp_show_on_login', false ) ),
 		);
 	}
 

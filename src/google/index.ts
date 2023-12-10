@@ -27,9 +27,6 @@ function create_google_login_button(redirectTo = "") {
 }
 
 function add_google_login_to_form(formEl: HTMLFormElement) {
-    if (window.gauthwp_login_google.args.show_on_login == false) {
-        return;
-    }
     formEl?.appendChild(create_google_login_button());
 }
 

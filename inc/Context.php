@@ -165,7 +165,8 @@ final class Context {
 				)
 			);
 
-			wp_register_script( 'gauthwp-login-google', 'http://localhost:5173/src/google/index.ts', array( 'gauthwp-vite' ), $this->version, true );
+            // phpcs:ignore
+			wp_register_script( 'gauthwp-login-google', 'http://localhost:5173/src/google/index.ts', array( 'gauthwp-vite' ), null, true );
 		} else {
 			wp_register_style( 'gauthwp-admin', $this->get_manifest_file( 'src/admin.css' ), array(), $this->version, 'all' );
 			wp_register_script( 'gauthwp-admin', $this->get_manifest_file( 'src/admin.tsx' ), array(), $this->version, true );

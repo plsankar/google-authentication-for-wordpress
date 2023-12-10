@@ -67,6 +67,32 @@ final class Plugin {
 			add_action( 'admin_menu', array( $this, 'register_admin_menu' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts_and_styles' ), 10, 1 );
 		}
+
+		if ( Settings::get_instance()->get_option( 'show_on_login' ) ) {
+			add_action( 'login_enqueue_scripts', array( self::$instance, 'login_page' ), 1 );
+		}
+	}
+
+	/**
+	 * Register scripts for the login page.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
+	public function login_page() {
+		wp_enqueue_script( 'gauthwp-login-google' );
+		wp_enqueue_style( 'gauthwp-login-google' );
+
+		wp_localize_script(
+			'gauthwp-login-google',
+			'gauthwp_login_google',
+			array(
+				'args' => array(
+					'pluginurl' => Context::get_instance()->plugin_dir_url(),
+					'authUrl'   => admin_url( 'admin-ajax.php' ) . '?action=gauthwp_login',
+				),
+			)
+		);
 	}
 
 	/**

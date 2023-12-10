@@ -96,7 +96,7 @@ final class Auth {
 	 * @return void
 	 */
 	public function ajax_google_login() {
-		if ( false === Settings::get_instance()->get_option( 'google_enabled' ) ) {
+		if ( false === Settings::get_instance()->get_option( 'enabled' ) ) {
 			wp_die(
 				esc_html__( 'Google login is disabled.', 'gauthwp' )
 			);
@@ -104,8 +104,8 @@ final class Auth {
 		}
 
 		if (
-			empty( Settings::get_instance()->get_option( 'google_client_id' ) ) ||
-			empty( Settings::get_instance()->get_option( 'google_client_secret' ) )
+			empty( Settings::get_instance()->get_option( 'client_id' ) ) ||
+			empty( Settings::get_instance()->get_option( 'client_secret' ) )
 		) {
 			wp_die(
 				esc_html__( 'Google login is not configured.', 'gauthwp' )
@@ -254,8 +254,8 @@ final class Auth {
 			return $this->google_client;
 		}
 		$google_client = new Google\Client();
-		$google_client->setClientId( Settings::get_instance()->get_option( 'google_client_id' ) );
-		$google_client->setClientSecret( Settings::get_instance()->get_option( 'google_client_secret' ) );
+		$google_client->setClientId( Settings::get_instance()->get_option( 'client_id' ) );
+		$google_client->setClientSecret( Settings::get_instance()->get_option( 'client_secret' ) );
 		$google_client->addScope( 'https://www.googleapis.com/auth/userinfo.email' );
 		$google_client->addScope( 'https://www.googleapis.com/auth/userinfo.profile' );
 		$google_client->setRedirectUri( admin_url( 'admin-ajax.php' ) . '?action=gauthwp_callback' );
