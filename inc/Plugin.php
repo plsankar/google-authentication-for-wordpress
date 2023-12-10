@@ -62,7 +62,7 @@ final class Plugin {
 	 * @return void
 	 */
 	public function register() {
-		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+		add_action( 'init', array( $this, 'load_textdomain' ) );
 		if ( is_admin() ) {
 			add_action( 'admin_menu', array( $this, 'register_admin_menu' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts_and_styles' ), 10, 1 );
