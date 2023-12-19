@@ -1,6 +1,6 @@
 <?php
 /**
- * Google Authentication for WP
+ * Secure Login With Google
  *
  * @package           GoogleAuthForWP
  * @author            plsankar <me@lakshmisankar.com>
@@ -8,8 +8,8 @@
  * @license           GPL-2.0-or-later
  *
  * @wordpress-plugin
- * Plugin Name:       Google Authentication for WP
- * Plugin URI:        https://wordpress.org/plugins/google-authentication-for-wp/
+ * Plugin Name:       Secure Login With Google
+ * Plugin URI:        https://wordpress.org/plugins/secure-login-with-oauth/
  * Description:       Seamlessly integrate Google OAuth for secure, hassle-free user access. Elevate your site's authentication standards effortlessly with this robust, user-friendly plugin.
  * Version:           1.0.0
  * Requires at least: 5.2

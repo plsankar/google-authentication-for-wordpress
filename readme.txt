@@ -1,4 +1,4 @@
-=== Google Authentication for WP ===
+=== Secure Login With Google ===
 Contributors: plsankar
 Tags: authentication, login, Google, OAuth, security
 Requires at least: WordPress 4.7
@@ -9,7 +9,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-"Google Authentication for WP" seamlessly integrates Google OAuth authentication into your WordPress site. Users can securely log in using their Google credentials, simplifying access and enhancing security measures.
+"Secure Login With Google" seamlessly integrates Google OAuth authentication into your WordPress site. Users can securely log in using their Google credentials, simplifying access and enhancing security measures.
 
 == Features ==
 
@@ -20,7 +20,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 == Installation ==
 
-1. Upload the 'google-authentication-for-wp' folder to the '/wp-content/plugins/' directory or install the plugin through the WordPress plugins screen directly.
+1. Upload the 'secure-login-with-oauth' folder to the '/wp-content/plugins/' directory or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Configure the plugin settings by navigating to the 'Google Authentication' section in your WordPress dashboard.
 

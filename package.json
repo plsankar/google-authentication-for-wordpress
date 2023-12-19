@@ -1,5 +1,5 @@
 {
-    "name": "google-authentication-for-wp",
+    "name": "secure-login-with-oauth",
     "version": "1.0.0",
     "description": "Seamlessly integrate Google OAuth for secure, hassle-free user access. Elevate your site's authentication standards effortlessly with this robust, user-friendly plugin.",
     "main": "index.js",

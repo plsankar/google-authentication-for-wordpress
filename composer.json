@@ -1,5 +1,5 @@
 {
-    "name": "plsankar/google-authentication-for-wp",
+    "name": "plsankar/secure-login-with-oauth",
     "description": "A Simple plugin to unpublish post after expiration.",
     "type": "wordpress-plugin",
     "autoload": {

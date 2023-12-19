@@ -42,7 +42,7 @@ RUN phpcs -i
 # RUN phpcs --config-set installed_paths /root/.composer/vendor/wp-coding-standards/wpcs
 # RUN phpcs -i
 
-# RUN phpcs /var/www/html/wp-content/plugins/google-authentication-for-wp
+# RUN phpcs /var/www/html/wp-content/plugins/secure-login-with-oauth
 
 
 # ENV NODE_VERSION=21

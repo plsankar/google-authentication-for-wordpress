@@ -4,7 +4,7 @@
         "../docker-compose.yml"
     ],
     "service": "wordpress",
-    "workspaceFolder": "/var/www/html/wp-content/plugins/google-authentication-for-wp",
+    "workspaceFolder": "/var/www/html/wp-content/plugins/secure-login-with-oauth",
     "customizations": {
         "vscode": {
             "extensions": [
