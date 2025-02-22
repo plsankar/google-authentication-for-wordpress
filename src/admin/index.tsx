@@ -10,6 +10,8 @@ import Header from "@/components/sections/Header";
 import GeneralSettings from "./GeneralSettings";
 import LoginSettingsPanel from "./LoginSettings";
 
+document.querySelectorAll("#wpbody .notice").forEach((el) => el.remove());
+
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("gauthwp-admin")!).render(
@@ -30,5 +32,5 @@ ReactDOM.createRoot(document.getElementById("gauthwp-admin")!).render(
                 <Toaster />
             </QueryClientProvider>
         </ThemeProvider>
-    </React.StrictMode>,
+    </React.StrictMode>
 );
