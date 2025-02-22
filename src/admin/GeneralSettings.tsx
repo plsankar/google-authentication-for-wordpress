@@ -98,11 +98,9 @@ const GeneralSettings: FC<
                     />
                     <FieldAnimate show={form.getValues("gauthwp_enabled")}>
                         <div className="p-5">
-                            <FormItem>
-                                <FormLabel>Redirect Url</FormLabel>
-                                <FormDescription>
-                                    Copy and paste the following url in the
-                                    Google Console.{" "}
+                            <FormLabel>Open Google Cloud Console</FormLabel>
+                            <div className="mt-3">
+                                <Button asChild>
                                     <a
                                         href="https://console.cloud.google.com/apis/credentials/consent"
                                         target="_blank"
@@ -110,11 +108,22 @@ const GeneralSettings: FC<
                                     >
                                         Open
                                     </a>
+                                </Button>
+                            </div>
+                        </div>
+                    </FieldAnimate>
+                    <FieldAnimate show={form.getValues("gauthwp_enabled")}>
+                        <div className="p-5">
+                            <FormItem>
+                                <FormLabel>Redirect Url</FormLabel>
+                                <FormDescription>
+                                    Copy and paste the following url in the
+                                    Google Console.
                                 </FormDescription>
                                 <FormControl>
                                     <CopyToClipboard
                                         text={getAdminAjaxUrl(
-                                            "gauthwp_callback",
+                                            "gauthwp_callback"
                                         )}
                                         onCopy={() => {
                                             toast({
@@ -125,7 +134,7 @@ const GeneralSettings: FC<
                                                     <ToastAction
                                                         onClick={() =>
                                                             window.open(
-                                                                "https://console.cloud.google.com/apis/credentials/consent/edit",
+                                                                "https://console.cloud.google.com/apis/credentials/consent/edit"
                                                             )
                                                         }
                                                         altText="Open Console"
@@ -137,11 +146,12 @@ const GeneralSettings: FC<
                                         }}
                                     >
                                         <Button
+                                            type="button"
                                             variant="outline"
                                             className="w-full justify-start"
                                         >
                                             {getAdminAjaxUrl(
-                                                "gauthwp_callback",
+                                                "gauthwp_callback"
                                             )}
                                         </Button>
                                     </CopyToClipboard>
