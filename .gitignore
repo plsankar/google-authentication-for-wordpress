@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 vendor/*
+
+.pnpm-store
+.DS_Store

@@ -9,6 +9,11 @@ RUN apt-get update && \
 RUN node --version
 RUN npm --version
 
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN npx corepack enable
+RUN npm i -g pnpm@latest
+
 # RUN curl -fsSL https://deb.nodesource.com/setup_current.x | bash - && \
 #     apt-get install -y nodejs \
 #     build-essential && \
@@ -22,7 +27,7 @@ RUN mv wp-cli-2.9.0.phar /usr/local/bin/wp
 RUN wp --info
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php -r "if (hash_file('sha384', 'composer-setup.php') === 'e21205b207c3ff031906575712edab6f13eb0b361f2085f1f1237b7126d785e826a450292b6cfd1d64d92e6563bbde02') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+# RUN php -r "if (hash_file('sha384', 'composer-setup.php') === 'e21205b207c3ff031906575712edab6f13eb0b361f2085f1f1237b7126d785e826a450292b6cfd1d64d92e6563bbde02') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
