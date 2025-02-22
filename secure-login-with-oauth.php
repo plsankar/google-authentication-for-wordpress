@@ -2,7 +2,7 @@
 /**
  * Secure Login With Google
  *
- * @package           GoogleAuthForWP
+ * @package           SecureLoginOAuth
  * @author            plsankar <me@lakshmisankar.com>
  * @copyright         2023 plsankar. https://github.com/plsankar
  * @license           GPL-2.0-or-later
@@ -16,7 +16,7 @@
  * Requires PHP:      7.2
  * Author:            plsankar
  * Author URI:        https://lakshmisankar.com
- * Text Domain:       googleauthforwp
+ * Text Domain:       SecureLoginOAuth
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Domain Path:       /languages
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use GoogleAuthForWP\Context;
+use SecureLoginOAuth\Context;
 
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/functions.php';

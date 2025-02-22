@@ -2,10 +2,10 @@
 /**
  * Class Context
  *
- * @package GoogleAuthForWP\Context;
+ * @package SecureLoginOAuth\Context;
  */
 
-namespace GoogleAuthForWP;
+namespace SecureLoginOAuth;
 
 /**
  * Class representing the main context for the plugin.

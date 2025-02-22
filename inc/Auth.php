@@ -2,10 +2,10 @@
 /**
  * Class Auth
  *
- * @package GoogleAuthForWP\Auth
+ * @package SecureLoginOAuth\Auth
  */
 
-namespace GoogleAuthForWP;
+namespace SecureLoginOAuth;
 
 use Google;
 use Google\Client;

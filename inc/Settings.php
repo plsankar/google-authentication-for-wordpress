@@ -2,10 +2,10 @@
 /**
  * Class Settings
  *
- * @package GoogleAuthForWP\Settings;
+ * @package SecureLoginOAuth\Settings;
  */
 
-namespace GoogleAuthForWP;
+namespace SecureLoginOAuth;
 
 use WP_REST_Response;
 use WP_REST_Server;

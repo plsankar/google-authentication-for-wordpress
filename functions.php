@@ -2,10 +2,10 @@
 /**
  * A File full of functions.
  *
- * @package GoogleAuthForWP
+ * @package SecureLoginOAuth
  */
 
-use GoogleAuthForWP\Plugin;
+use SecureLoginOAuth\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

@@ -2,10 +2,10 @@
 /**
  * Main plugin class.
  *
- * @package GoogleAuthForWP\Plugin
+ * @package SecureLoginOAuth\Plugin
  */
 
-namespace GoogleAuthForWP;
+namespace SecureLoginOAuth;
 
 /**
  * Class representing the main plugin.
