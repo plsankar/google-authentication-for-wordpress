@@ -137,7 +137,13 @@ final class Context {
 	 * @return void
 	 */
 	public function register_assets() {
+
+		wp_register_style( 'gauthwp-fonts', 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sora:wght@100..800&display=swap', array(), $this->version, 'all' );
+
 		if ( 'development' === wp_get_environment_type() ) {
+
+			wp_enqueue_style( 'gauthwp-fonts' );
+
 			add_filter( 'script_loader_tag', array( $this, 'module_script_loader' ), 10, 2 );
             // phpcs:ignore
             wp_register_script('gauthwp-vite', 'http://localhost:5173/@vite/client', array(), null, false);
@@ -168,6 +174,9 @@ final class Context {
             // phpcs:ignore
 			wp_register_script( 'gauthwp-login-google', 'http://localhost:5173/src/google/index.ts', array( 'gauthwp-vite' ), null, true );
 		} else {
+
+			wp_enqueue_style( 'gauthwp-fonts' );
+
 			wp_register_style( 'gauthwp-admin', $this->get_manifest_file( 'src/admin.css' ), array(), $this->version, 'all' );
 			wp_register_script( 'gauthwp-admin', $this->get_manifest_file( 'src/admin.tsx' ), array(), $this->version, true );
 

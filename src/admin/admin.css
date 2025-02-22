@@ -81,3 +81,7 @@ textarea.readonly,
 textarea[readonly] {
     background: transparent;
 }
+
+#gauthwp-admin {
+    @apply font-sans;
+}
