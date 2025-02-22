@@ -35,7 +35,7 @@ const withPanel = <D, T>(
     WrappedComponent: FC<T & PanelChild<D>>,
     restEndpoint: string,
     title: string,
-    descrption?: string | null,
+    descrption?: string | null
 ) => {
     const WithPanel: FC<T> = (props) => {
         const queryClient = useQueryClient();
@@ -103,7 +103,7 @@ const withPanel = <D, T>(
             >
                 <Card className="relative overflow-hidden shadow-none">
                     <CardHeader>
-                        <CardTitle className="font-light text-xl">
+                        <CardTitle className="font-serif font-normal text-xl">
                             {title}
                         </CardTitle>
                         {descrption ? (
